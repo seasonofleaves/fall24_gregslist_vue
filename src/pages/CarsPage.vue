@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import CarListing from '@/components/globals/CarListing.vue';
 import { carsService } from '@/services/CarsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -33,7 +34,7 @@ async function getCars() {
     </section>
     <div class="row">
       <div v-for="car in cars" :key="car.id" class="col-12">
-        {{ car.make }} {{ car.model }}
+        <CarListing :carProp="car" />
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ export class House {
     this.bedrooms = data.bedrooms
     this.bathrooms = data.bathrooms
     this.evels = data.levels
-    this.imgURL = data.imgUrl
+    this.imgUrl = data.imgUrl
     this.year = data.year
     this.price = data.price
     this.description = data.description

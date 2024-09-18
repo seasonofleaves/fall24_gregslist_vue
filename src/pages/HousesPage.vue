@@ -32,7 +32,7 @@ async function getHouses(){
     </section>
     <section class="row">
       <div v-for="house in houses" :key="house.id" class="col-12">
-        <HouseListing :houseprop="house" />
+        <HouseListing :houseProp="house" />
       </div>
     </section>
   </div>

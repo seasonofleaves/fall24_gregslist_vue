@@ -25,8 +25,19 @@ async function getCars() {
 
 
 <template>
-  <h1>Cars Page</h1>
-  {{ cars }}
+  <div class="container">
+    <section class="row">
+      <div class="col-12">
+        <h1>Cars Page</h1>
+      </div>
+    </section>
+    <div class="row">
+      <div v-for="car in cars" :key="car.id" class="col-12">
+        {{ car.make }} {{ car.model }}
+      </div>
+    </div>
+  </div>
+
 </template>
 
 

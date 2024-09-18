@@ -5,6 +5,7 @@ import { computed, onMounted } from 'vue';
 import { housesService } from '@/services/HousesService.js';
 import { AppState } from '@/AppState.js';
 import HouseListing from '@/components/globals/HouseListing.vue';
+import HouseForm from '@/components/globals/HouseForm.vue';
 
 const houses = computed(() => AppState.houses)
 
@@ -31,7 +32,12 @@ async function getHouses(){
       </div>
     </section>
     <section class="row">
-      <div v-for="house in houses" :key="house.id" class="col-12">
+      <div class="col-12">
+        <HouseForm/>
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="house in houses" :key="house.id" class="col-12 mb-3">
         <HouseListing :houseProp="house" />
       </div>
     </section>

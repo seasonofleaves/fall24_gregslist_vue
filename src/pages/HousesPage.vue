@@ -23,8 +23,21 @@ async function getHouses(){
 </script>
 
 <template>
-  <h1>Houses</h1>
-  {{ houses }}
+  <div class="container">
+    <section class="row">
+      <div class="col-12">
+        <h1>Houses</h1>
+      </div>
+    </section>
+    <section class="row">
+      <div v-for="house in houses" :key="house.id" class="col-12">
+        <p>
+          {{ house.bedrooms }} beds {{ house.bathrooms }} baths
+        </p>
+
+      </div>
+    </section>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

@@ -1,8 +1,24 @@
 <script setup>
 import { House } from '@/models/House.js';
-defineProps({
-  houseProp: { type: House, required: true }
+import { housesService } from '@/services/HousesService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
+
+const props = defineProps({
+houseProp: { type: House, required: true }
 })
+
+async function deleteHouse(){
+  try {
+    const wantsToDelete = await Pop.confirm(`Are you sure you want to delete this house?`)
+    if (!wantsToDelete){return}
+    await housesService.deleteHouse(props.houseProp.id)
+  } catch (error) {
+    Pop.error(error)
+    logger.log(error)
+  }
+}
+
 </script>
 
 
@@ -22,6 +38,7 @@ defineProps({
       </div>
       <h5>{{ houseProp.description }}</h5>
     </div>
+    <button @click="deleteHouse()" class="btn btn-danger" type="button">Delete House</button>
   </section>
 </template>
 

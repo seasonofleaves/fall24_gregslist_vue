@@ -1,9 +1,11 @@
 <script setup>
 import Pop from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { housesService } from '@/services/HousesService.js';
+import { AppState } from '@/AppState.js';
 
+const houses = computed(() => AppState.houses)
 
 onMounted(()=> {
   getHouses()
@@ -22,6 +24,7 @@ async function getHouses(){
 
 <template>
   <h1>Houses</h1>
+  {{ houses }}
 </template>
 
 <style lang="scss" scoped></style>

@@ -27,7 +27,7 @@ const editableCarData = ref({
   year: currentYear,
   price: 0,
   description: '',
-  color: '',
+  color: '#000000',
   engineType: 'unknown'
 })
 
@@ -35,6 +35,16 @@ async function createCar() {
   try {
     const carData = editableCarData.value
     await carsService.createCar(carData)
+    editableCarData.value = {
+      make: '',
+      model: '',
+      imgUrl: '',
+      year: currentYear,
+      price: 0,
+      description: '',
+      color: '#000000',
+      engineType: 'unknown'
+    }
   } catch (error) {
     Pop.meow(error)
     logger.error(error)
@@ -84,7 +94,7 @@ async function createCar() {
     <div class="mb-3">
       <label for="color" class="form-label">Car Color</label>
       <input v-model="editableCarData.color" type="color" class="form-control form-control-color" id="color"
-        value="#000000" title="Choose your color">
+        title="Choose your color">
     </div>
     <div class="text-end">
       <button class="btn btn-success" type="submit">Submit</button>

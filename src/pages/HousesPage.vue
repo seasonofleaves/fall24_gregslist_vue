@@ -8,6 +8,7 @@ import HouseListing from '@/components/globals/HouseListing.vue';
 import HouseForm from '@/components/globals/HouseForm.vue';
 
 const houses = computed(() => AppState.houses)
+const account = computed(() => AppState.account)
 
 onMounted(()=> {
   getHouses()
@@ -31,8 +32,8 @@ async function getHouses(){
         <h1>Houses</h1>
       </div>
     </section>
-    <section class="row">
-      <div class="col-12">
+    <section class="row my-3">
+      <div v-if="account !=null" class="col-12">
         <HouseForm/>
       </div>
     </section>

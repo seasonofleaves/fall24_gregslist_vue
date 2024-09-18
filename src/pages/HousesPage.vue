@@ -4,6 +4,7 @@ import { logger } from '@/utils/Logger.js';
 import { computed, onMounted } from 'vue';
 import { housesService } from '@/services/HousesService.js';
 import { AppState } from '@/AppState.js';
+import HouseListing from '@/components/globals/HouseListing.vue';
 
 const houses = computed(() => AppState.houses)
 
@@ -31,10 +32,7 @@ async function getHouses(){
     </section>
     <section class="row">
       <div v-for="house in houses" :key="house.id" class="col-12">
-        <p>
-          {{ house.bedrooms }} beds {{ house.bathrooms }} baths
-        </p>
-
+        <HouseListing :houseprop="house" />
       </div>
     </section>
   </div>

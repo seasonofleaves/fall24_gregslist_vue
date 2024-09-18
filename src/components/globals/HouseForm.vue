@@ -18,6 +18,18 @@ async function createHouse(){
   try {
     const houseData = editableHouseData.value
     await housesService.createHouse(houseData)
+    editableHouseData.value = {
+      bedrooms: 0,
+      levels: 0,
+      imgUrl: '',
+      year: new Date().getFullYear(),
+      price: 0,
+      description: '',
+      bathrooms: 0,
+    }
+
+
+
   } catch (error) {
     Pop.error(error)
     logger.log(error)

@@ -21,6 +21,8 @@ class CarsService {
   async deleteCar(carId) {
     const response = await api.delete(`api/cars/${carId}`)
     logger.log('DELETED CAR 💥', response.data)
+    const carIndex = AppState.cars.findIndex(car => car.id == carId)
+    AppState.cars.splice(carIndex, 1)
   }
 }
 

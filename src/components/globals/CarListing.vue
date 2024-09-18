@@ -1,14 +1,18 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { Car } from '@/models/Car.js';
 import { carsService } from '@/services/CarsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
+import { computed } from 'vue';
 
 
 // NOTE if you want to use props within your script tag, you must alias it out to a variable
 const props = defineProps({
   carProp: { type: Car, required: true }
 })
+
+const account = computed(() => AppState.account)
 
 async function deleteCar() {
   try {
@@ -45,7 +49,9 @@ async function deleteCar() {
           <h4>{{ carProp.priceAsCurrency }}</h4>
         </div>
         <div class="text-end">
-          <button @click="deleteCar()" class="btn btn-danger" type="button">Delete Car</button>
+          <button v-if="carProp.creatorId == account?.id" @click="deleteCar()" class="btn btn-danger" type="button">
+            Delete Car
+          </button>
         </div>
       </div>
     </div>

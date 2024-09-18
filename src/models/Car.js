@@ -8,10 +8,15 @@ export class Car {
     this.price = data.price
     this.color = data.color || '#7ed957'
     this.engineType = data.engineType
-    this.creatorId = data.creatorId
     this.createdAt = new Date(data.createdAt)
     this.updatedAt = new Date(data.updatedAt)
-    this.creator = data.creator
+    this.creatorId = data.creatorId
+    this.creatorName = data.creator.name
+    this.creatorPicture = data.creator.picture
+  }
+
+  get priceAsCurrency() {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.price)
   }
 }
 

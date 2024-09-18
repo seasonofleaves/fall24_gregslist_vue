@@ -33,7 +33,7 @@ async function getHouses(){
       </div>
     </section>
     <section class="row my-3">
-      <div v-if="account !=null" class="col-12">
+      <div v-if="account" class="col-12">
         <HouseForm/>
       </div>
     </section>

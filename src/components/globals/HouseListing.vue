@@ -1,12 +1,16 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { House } from '@/models/House.js';
 import { housesService } from '@/services/HousesService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
+import { computed } from 'vue';
 
 const props = defineProps({
 houseProp: { type: House, required: true }
 })
+
+const account = computed(() => AppState.account)
 
 async function deleteHouse(){
   try {
@@ -38,7 +42,7 @@ async function deleteHouse(){
       </div>
       <h5>{{ houseProp.description }}</h5>
     </div>
-    <button @click="deleteHouse()" class="btn btn-danger" type="button">Delete House</button>
+    <button v-if="houseProp.creatorId == account?.id" @click="deleteHouse()" class="btn btn-danger" type="button">Delete House</button>
   </section>
 </template>
 

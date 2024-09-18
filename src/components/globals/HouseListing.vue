@@ -18,6 +18,7 @@ defineProps({
           <h3 class="fs-5 mb-0">Listed on {{ houseProp.createdAt.toLocaleDateString() }} by {{ houseProp.creatorName }}</h3>
           <img :src="houseProp.creatorPicture" :alt="houseProp.creatorName" class="creator-img">
         </div>
+        <h4>{{ houseProp.priceAsCurrency }}</h4>
       </div>
     </div>
   </section>

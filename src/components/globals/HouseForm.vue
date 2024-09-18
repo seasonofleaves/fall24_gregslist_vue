@@ -1,4 +1,7 @@
 <script setup>
+import { housesService } from '@/services/HousesService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
 import { ref } from 'vue';
 
 const editableHouseData = ref({
@@ -10,11 +13,22 @@ const editableHouseData = ref({
   price: 0,
   description: '',
 })
+
+async function createHouse(){
+  try {
+    const houseData = editableHouseData.value
+    await housesService.createHouse(houseData)
+  } catch (error) {
+    Pop.error(error)
+    logger.log(error)
+  }
+}
+
 </script>
 
 
 <template>
-  <form onsubmit="app.CarsController.createCar()">
+  <form @submit.prevent="createHouse()">
     <div class="mb-3">
       <label class="form-label" for="make">Bedrooms</label>
       <input v-model="editableHouseData.bedrooms" class="form-control" id="make" name="make" type="text" required

@@ -20,6 +20,7 @@ defineProps({
         </div>
         <h4>{{ houseProp.priceAsCurrency }}</h4>
       </div>
+      <h5>{{ houseProp.description }}</h5>
     </div>
   </section>
 </template>

@@ -1,6 +1,10 @@
 <script setup>
+import { carsService } from '@/services/CarsService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
 import { ref } from 'vue';
 
+const currentYear = new Date().getFullYear() //2024
 
 const engineTypes = [
   "unknown",
@@ -20,18 +24,28 @@ const editableCarData = ref({
   make: '',
   model: '',
   imgUrl: '',
-  year: new Date().getFullYear(),
+  year: currentYear,
   price: 0,
   description: '',
   color: '',
   engineType: 'unknown'
 })
 
+async function createCar() {
+  try {
+    const carData = editableCarData.value
+    await carsService.createCar(carData)
+  } catch (error) {
+    Pop.meow(error)
+    logger.error(error)
+  }
+}
+
 </script>
 
 
 <template>
-  <form onsubmit="app.CarsController.createCar()">
+  <form @submit.prevent="createCar()">
     <div class="mb-3">
       <label class="form-label" for="make">Car Make</label>
       <input v-model="editableCarData.make" class="form-control" id="make" name="make" type="text" required
@@ -50,7 +64,7 @@ const editableCarData = ref({
     <div class="mb-3">
       <label class="form-label" for="year">Car Year</label>
       <input v-model="editableCarData.year" class="form-control" id="year" name="year" type="number" required min="1886"
-        max="2025" placeholder="2025">
+        :max="currentYear + 1" placeholder="2025">
     </div>
     <div class="mb-3">
       <label class="form-label" for="price">Car Price</label>
@@ -68,7 +82,6 @@ const editableCarData = ref({
       </option>
     </select>
     <div class="mb-3">
-
       <label for="color" class="form-label">Car Color</label>
       <input v-model="editableCarData.color" type="color" class="form-control form-control-color" id="color"
         value="#000000" title="Choose your color">

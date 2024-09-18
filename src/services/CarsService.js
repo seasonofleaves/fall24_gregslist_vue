@@ -13,6 +13,8 @@ class CarsService {
   async createCar(carData) {
     const response = await api.post('api/cars', carData)
     logger.log('CREATED CAR 🚗', response.data)
+    const newCar = new Car(response.data)
+    AppState.cars.push(newCar)
   }
 }
 

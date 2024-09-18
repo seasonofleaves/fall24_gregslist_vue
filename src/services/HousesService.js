@@ -7,6 +7,8 @@ class HousesService {
   async createHouse(houseData) {
     const response = await api.post('api/houses', houseData)
     logger.log('Created house - house service', response.data)
+    const newHouse = new House(response.data)
+    AppState.houses.push(newHouse)
   }
 
   async getHouses() {

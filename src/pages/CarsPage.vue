@@ -8,6 +8,7 @@ import Pop from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const cars = computed(() => AppState.cars)
+const account = computed(() => AppState.account)
 
 onMounted(() => {
   getCars()
@@ -30,11 +31,11 @@ async function getCars() {
   <div class="container">
     <section class="row">
       <div class="col-12">
-        <h1>Cars Page</h1>
+        <h1>Cars</h1>
       </div>
     </section>
-    <section class="row">
-      <div class="col-12">
+    <section class="row my-3">
+      <div v-if="account != null" class="col-12">
         <CarForm />
       </div>
     </section>
